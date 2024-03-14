@@ -2,12 +2,17 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    font-family: "Madimi One", sans-serif;
+
 }
 body{
-    background-color: beige;
+    background-color: #02111B;
 }
 .app{
-    background: wheat;
+    border-radius: 36px;
+    background: #944E63;
+    box-shadow:  50px 50px 0px #572e3a,
+                -50px -50px 0px #d16e8c;
     width: 90%;
     max-width: 600px;
     margin: 100px auto 0;
@@ -15,9 +20,9 @@ body{
 }
 
 .app h1{
-    font-size: 30px;
+    font-size: 50px;
     padding-bottom: 20px;
-    color: grey;
+    color:#CAA6A6;
     font-weight: 600;
     border-bottom: 1px solid #333;
 }
@@ -26,12 +31,12 @@ body{
 }
 .quiz {
     font-size: 18px;
-    color: aliceblue;
+    color: #FFE7E7;
     font-weight: 600;
 }
 
 .btn{
-    background: white;
+    background: #FFE7E7;
     color: #333;
     font-weight: 500;
     width: 100%;
@@ -47,10 +52,10 @@ body{
 
 .btn:hover{
     background: #222;
-    color: white;
+    color: #CAA6A6;
 }
 #next-btn {
-    background: rgb(61, 7, 160);
+    background: #AD88C6;
     color: #fff;
     font-weight: 500;
     width: 150px;

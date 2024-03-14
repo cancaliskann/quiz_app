@@ -41,19 +41,18 @@ const questionElement = document.getElementById("question");
 const answerButtonContainer = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
 const resultElement = document.getElementById("result");
-const restartButton = document.createElement("button"); // Create restart button
-restartButton.textContent = "Restart Quiz"; // Set button text
-restartButton.classList.add("btn"); // Add button class
-
+const restartButton = document.createElement("button"); 
+restartButton.textContent = "Restart Quiz"; 
+restartButton.classList.add("btn"); 
 let currentQuestionIndex = 0;
 let score = 0;
 
 function startQuiz(){
     currentQuestionIndex = 0;
     score = 0;
-    resultElement.textContent = ""; // Reset result
-    nextButton.style.display = "none"; // Hide the "Next Question" button initially
-    restartButton.style.display = "none"; // Hide the "Restart Quiz" button initially
+    resultElement.textContent = ""; 
+    nextButton.style.display = "none"; 
+    restartButton.style.display = "none"; 
     showQuestion();
 }
 
@@ -62,7 +61,7 @@ function showQuestion(){
     let questionNo = currentQuestionIndex + 1;
     questionElement.textContent = questionNo + ". " + currentQuestion.question;
 
-    // Clear previous answer buttons
+
     answerButtonContainer.innerHTML = '';
 
     currentQuestion.answer.forEach(answer => {
@@ -79,27 +78,25 @@ function showQuestion(){
 function handleAnswer(correct, button){
     if(correct){
         score++;
-        button.style.backgroundColor = "green"; // Change button color to green if correct
+        button.style.backgroundColor = "#7469B6"; 
     } else {
-        button.style.backgroundColor = "red"; // Change button color to red if wrong
+        button.style.backgroundColor = "#FF204E"; 
     }
-    // Disable answer buttons after the user responds
+    
     const buttons = document.querySelectorAll(".btn");
     buttons.forEach(button => {
         button.disabled = true;
     });
-    nextButton.style.display = "block"; // Show the "Next Question" button
+    nextButton.style.display = "block"; 
 }
 
 function nextQuestion(){
     currentQuestionIndex++;
-    // Reset button colors
     const buttons = document.querySelectorAll(".btn");
     buttons.forEach(button => {
         button.style.backgroundColor = "";
     });
-    nextButton.style.display = "none"; // Hide the "Next Question" button
-    // Check if quiz is finished
+    nextButton.style.display = "none"; 
     if(currentQuestionIndex < questions.length){
         showQuestion();
     } else {
@@ -108,24 +105,34 @@ function nextQuestion(){
 }
 
 function endQuiz(){
-    questionElement.textContent = ""; // Hide the question
-    answerButtonContainer.innerHTML = ""; // Hide the answer buttons
-    nextButton.style.display = "none"; // Hide the "Next Question" button
-    resultElement.textContent = "Quiz Finished! Your Score: " + score + "/" + questions.length;
-    resultElement.textContent += "\nYou got " + score + " out of " + questions.length + " questions correct.";
-    // Append result and restart button
-    answerButtonContainer.appendChild(resultElement);
-    answerButtonContainer.appendChild(restartButton);
-    restartButton.style.display = "block"; // Show the "Restart Quiz" button
+    questionElement.textContent = ""; 
+    answerButtonContainer.innerHTML = ""; 
+    nextButton.style.display = "none"; 
+    resultElement.innerHTML = ""; 
+
+    appendParagraph("Quiz Finished! Your Score: " + score + "/" + questions.length);
+    appendParagraph("You got " + score + " out of " + questions.length + " questions correct.");
+
+    
+    restartButton.style.display = "block";
+    resultElement.appendChild(restartButton); 
+}
+
+
+
+
+function appendParagraph(text) {
+    const paragraph = document.createElement("p");
+    paragraph.textContent = text;
+    resultElement.appendChild(paragraph);
 }
 
 function restartQuiz(){
-    restartButton.style.display = "none"; // Hide the "Restart Quiz" button
-    startQuiz(); // Restart the quiz
+    restartButton.style.display = "none"; 
+    startQuiz(); 
 }
 
 startQuiz();
 
-// Add event listeners
 nextButton.addEventListener("click", nextQuestion);
 restartButton.addEventListener("click", restartQuiz);
